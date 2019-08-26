@@ -14,10 +14,7 @@ GO
 use EmployeeDB;
 go
 
-create schema [Company];
-go
-
-create table [Company].Department
+create table [model].Department
 (
 	Did int not null identity(1,1),
 	[Name] nvarchar(50) not null,
@@ -25,7 +22,7 @@ create table [Company].Department
 );
 go
 
-create table [Comapny].Employee
+create table [model].Employee
 (
 	Eid int not null identity(1,1),
 	Did int not null,
@@ -34,7 +31,7 @@ create table [Comapny].Employee
 );
 go
 
-create table [Company].EmployeeDetails
+create table [model].EmployeeDetails
 (
 	Emid int not null identity(1,1),
 	Eid int not null,
@@ -45,17 +42,17 @@ create table [Company].EmployeeDetails
 );
 go
 
-alter table [Company].Department
+alter table [model].Department
     add constraint PK_Did primary key (Did);
 
-alter table [Company].Employee 
+alter table [model].Employee 
     add constraint PK_Eid primary key (Eid);
 
-alter table [Company].Employee
-    add constraint FK_Did foreign key (Did) references [Company].Department(Did);
+alter table [model].Employee
+    add constraint FK_Did foreign key (Did) references [model].Department(Did);
 
-alter table [Company].EmployeeDetails
+alter table [model].EmployeeDetails
     add constraint PK_Emid primary key (Emid);
 
-alter table [Company].EmployeeDetails
-    add constraint FK_Eid foreign key (Eid) references [Company].Employee(Eid);
+alter table [model].EmployeeDetails
+    add constraint FK_Eid foreign key (Eid) references [model].Employee(Eid);
